@@ -1,0 +1,70 @@
+body {
+    margin: 0;
+    overflow: hidden; /* Prevent scrollbars when hearts fly off */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #ffe0e6; /* Light pink background */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    position: relative;
+}
+
+.container {
+    text-align: center;
+    z-index: 10; /* Make sure text is above hearts */
+}
+
+#cuteText {
+    font-size: 3em;
+    color: #ff69b4; /* Hot pink text */
+    cursor: pointer; /* Indicate it's clickable */
+    transition: transform 0.2s ease-in-out;
+}
+
+#cuteText:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+.heart {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: #ff7f50; /* Coral color */
+    transform: rotate(-45deg);
+    animation: floatHeart linear infinite;
+    z-index: 1; /* Make sure hearts are behind text initially */
+    opacity: 0.8;
+}
+
+.heart::before,
+.heart::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: #ff7f50;
+    border-radius: 50%;
+}
+
+.heart::before {
+    top: -10px;
+    left: 0;
+}
+
+.heart::after {
+    top: 0;
+    left: 10px;
+}
+
+/* Animation for floating hearts */
+@keyframes floatHeart {
+    0% {
+        transform: translate(0, 0) rotate(-45deg) scale(1);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translate(calc(var(--randX) * 1px), -1000px) rotate(-45deg) scale(1.5);
+        opacity: 0;
+    }
+}
